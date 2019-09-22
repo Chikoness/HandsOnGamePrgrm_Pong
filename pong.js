@@ -15,6 +15,8 @@ var winningScore = 3;
 var isGameOver = false;
 
 window.onload = function() {
+  loadSounds();
+
   canvas = document.getElementById('gameCanvas');
   canvasContext = canvas.getContext('2d');      
 
@@ -107,6 +109,7 @@ function moveEverything() {
   if (ballX > canvas.width - PADDLE_THICKNESS) {
     // positive value = to the right, negative value = to the left
     if (ballY > paddle2Y && ballY < paddle2Y + PADDLE_HEIGHT) {
+      ballHitPaddleSound.play();
       ballSpeedX *= -1;
       moveBallAngle(paddle2Y);
     } else {
@@ -117,6 +120,7 @@ function moveEverything() {
   } else if (ballX < PADDLE_THICKNESS) {
     // ball bounces back to the other side of the screen
     if (ballY > paddle1Y && ballY < paddle1Y + PADDLE_HEIGHT) {
+      ballHitPaddleSound.play();
       ballSpeedX *= -1;
       moveBallAngle(paddle1Y); 
     } else {
